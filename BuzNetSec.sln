@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuzNetSec", "BuzNetSec\BuzNetSec.csproj", "{DF9CC63F-CCF2-4E45-8A5D-A4FFC8FDCB12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuzNetSecUnitTest", "BuzNetSecUnitTest\BuzNetSecUnitTest.csproj", "{BF496FF3-03F5-4E29-9BAE-64F540390818}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DF9CC63F-CCF2-4E45-8A5D-A4FFC8FDCB12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF9CC63F-CCF2-4E45-8A5D-A4FFC8FDCB12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF9CC63F-CCF2-4E45-8A5D-A4FFC8FDCB12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF496FF3-03F5-4E29-9BAE-64F540390818}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF496FF3-03F5-4E29-9BAE-64F540390818}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF496FF3-03F5-4E29-9BAE-64F540390818}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF496FF3-03F5-4E29-9BAE-64F540390818}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
