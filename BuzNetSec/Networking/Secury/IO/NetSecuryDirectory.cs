@@ -40,7 +40,7 @@ namespace BuzNetSec.Networking.Secury.IO
                     return Directory.Exists(directoryPath);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
