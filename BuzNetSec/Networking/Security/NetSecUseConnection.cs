@@ -8,7 +8,7 @@ using System.Text;
 using System.ComponentModel;
 using System.IO;
 
-namespace BuzNetSec.Networking.Secury
+namespace BuzNetSec.Networking.Security
 {
     /// <summary>
     /// Make a secury connection to a network resource
@@ -105,14 +105,14 @@ namespace BuzNetSec.Networking.Secury
             string lpAccessName,
             string lpBufferSize,
             string lpResult
-            );//End method WNetUseConnection
+            );
 
         [DllImport("Mpr.dll")]
         private static extern int WNetCancelConnection2(
             string lpName,
             int dwFlags,
             bool fForce
-            );//End method WNetCancelConnection2
+            );
 
         [StructLayout(LayoutKind.Sequential)]
         private class NETRESOURCE
@@ -121,11 +121,11 @@ namespace BuzNetSec.Networking.Secury
             public int dwType = 0;
             public int dwDisplayType = 0;
             public int dwUsage = 0;
-            public string lpLocalName = "";
-            public string lpRemoteName = "";
-            public string lpComment = "";
-            public string lpProvider = "";
-        }//End class NETRESOURCE
+            public string lpLocalName = string.Empty;
+            public string lpRemoteName = string.Empty;
+            public string lpComment = string.Empty;
+            public string lpProvider = string.Empty;
+        }
 
         private struct ErrorClass
         {
@@ -137,15 +137,14 @@ namespace BuzNetSec.Networking.Secury
                 this.num = num;
                 this.message = message;
             }
-        }//End strucnt ErrorClass
+        }
 
         /// <summary>
         /// Make a instance of NetSecUseConnection
         /// </summary>
         public NetSecUseConnection()
         {
-
-        }//End ctor
+        }
 
         /// <summary>
         /// Ctor when is instanced automatically
@@ -163,7 +162,7 @@ namespace BuzNetSec.Networking.Secury
 
             this.DisconnectRemote(remoteUNC);
             this.ConnectToRemote(remoteUNC, credential.UserName, credential.Password);
-        }//End ctor
+        }
 
         /// <summary>
         /// Make a connection to a network resource
@@ -209,8 +208,8 @@ namespace BuzNetSec.Networking.Secury
 
             int ret;
 
-            //If promptUser is tru launch an UI
-            //to enter credential
+            // If promptUser is tru launch an UI
+            // to enter credential
             if (promptUser)
             {
                 ret = WNetUseConnection(IntPtr.Zero, nr, "", "", CONNECT_INTERACTIVE | CONNECT_PROMPT, null, null, null);
@@ -245,7 +244,7 @@ namespace BuzNetSec.Networking.Secury
 
                 throw new Win32Exception(ret, strErrMsg);
             }
-        }//End method ConnectToRemote
+        }
 
         /// <summary>
         /// Disconnect to user of network resource
@@ -265,33 +264,31 @@ namespace BuzNetSec.Networking.Secury
 
                 throw new Win32Exception(ret, strErrMsg);
             }
-        }//End method DisconnectRemote
+        }
 
-        //Search error by id
         private string GetErrorForNumber(int errNum)
         {
             foreach (ErrorClass er in ERROR_LIST)
             {
                 if (er.num == errNum) return er.message;
             }
-            return "Error: Unknown, " + errNum;
-        }//End method GetErrorForNumber
+            return string.Format("Error: Unknown, {0}", errNum);
+        }
 
         ~NetSecUseConnection()
         {
             Dispose(false);
-        }//End destructor
+        }
 
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }//End Dispose
+        }
 
         protected virtual void Dispose(bool disposing)
         {
             DisconnectRemote(_remoteUNC);
-        }//End Dispose
-
+        }
     }
 }

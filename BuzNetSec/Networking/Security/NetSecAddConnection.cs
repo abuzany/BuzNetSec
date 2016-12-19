@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO;
 
-namespace BuzNetSec.Networking.Secury
+namespace BuzNetSec.Networking.Security
 {
     [StructLayout(LayoutKind.Sequential)]
     public class NetResource
@@ -101,10 +101,10 @@ namespace BuzNetSec.Networking.Secury
                 : string.Format(@"{0}\{1}", credential.Domain, credential.UserName);
 
 
-            //Finish all connections
+            // Finish all connections
             WNetCancelConnection2(_ip, 0, true);
 
-            //Establis connection
+            // Establis connection
             var result = WNetAddConnection2(
                 netResource,
                 credential.Password,
@@ -169,5 +169,5 @@ namespace BuzNetSec.Networking.Secury
         private static extern int WNetCancelConnection2(string name, int flags,
             bool force);
 
-    }//End class NetSecAddConnection
+    }
 }

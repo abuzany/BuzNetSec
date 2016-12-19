@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 
-namespace BuzNetSec.Networking.Secury.IO
+namespace BuzNetSec.Networking.Security.IO
 {
     /// <summary>
     /// This class provide of secury methods to work with files 
@@ -13,7 +13,7 @@ namespace BuzNetSec.Networking.Secury.IO
     /// <remarks>
     /// Ange Buzany.
     /// </remarks>
-    public static class NetSecuryFile
+    public static class File
     {        
         /// <summary>
         /// Copy a file of secury way between two network places.
@@ -33,7 +33,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static void SecuryCopy(string fileSrc, string fileDestination, NetworkCredential ncRead, NetworkCredential ncWrite)
+        public static void Copy(string fileSrc, string fileDestination, NetworkCredential ncRead, NetworkCredential ncWrite)
         {
             try
             {
@@ -43,14 +43,14 @@ namespace BuzNetSec.Networking.Secury.IO
                 using (new NetSecUseConnection(diDirectorySrc.Root.ToString(), ncRead))
                 using (new NetSecUseConnection(diDirectorDestination.Root.ToString(), ncWrite))
                 {
-                    File.Copy(fileSrc, fileDestination, true);
+                    System.IO.File.Copy(fileSrc, fileDestination, true);
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
-        }//End method SecuryCopy
+        }
 
         /// <summary>
         /// Copy a file of secury way between a network place to local place.
@@ -67,7 +67,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static void SecuryCopy(string fileSrc, string fileDestination, NetworkCredential netCred, bool isReadNetCred)
+        public static void Copy(string fileSrc, string fileDestination, NetworkCredential netCred, bool isReadNetCred)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace BuzNetSec.Networking.Secury.IO
                 {
                     using (new NetSecUseConnection(diDirectorySrc.Root.ToString(), netCred))
                     {
-                        File.Copy(fileSrc, fileDestination, true);
+                        System.IO.File.Copy(fileSrc, fileDestination, true);
                     }
                     
                 }
@@ -86,7 +86,7 @@ namespace BuzNetSec.Networking.Secury.IO
                 {
                     using (new NetSecUseConnection(diDirectorDestination.Root.ToString(), netCred))
                     {
-                        File.Copy(fileSrc, fileDestination, true);
+                        System.IO.File.Copy(fileSrc, fileDestination, true);
                     }
                     
                 }
@@ -96,7 +96,7 @@ namespace BuzNetSec.Networking.Secury.IO
             {
                 throw e;
             }
-        }//End method SecuryCopy
+        }
 
         /// <summary>
         /// Delete a file of secury way in a network place.
@@ -110,7 +110,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static void SecuryFileDelete(string filePath, NetworkCredential ncRead)
+        public static void Delete(string filePath, NetworkCredential ncRead)
         {
             try
             {
@@ -118,14 +118,14 @@ namespace BuzNetSec.Networking.Secury.IO
 
                 using (new NetSecUseConnection(fiFileSrc.Directory.Root.FullName, ncRead))
                 {
-                    File.Delete(filePath);
+                    System.IO.File.Delete(filePath);
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
-        }//End method SecuryFileDelete
+        }
 
         /// <summary>
         /// Verify if file exists of secury way in a network place.
@@ -139,7 +139,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static bool SecuryFileExists(string filePath, NetworkCredential ncRead)
+        public static bool Exist(string filePath, NetworkCredential ncRead)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace BuzNetSec.Networking.Secury.IO
 
                 using (new NetSecUseConnection(fiFileSrc.Directory.Root.ToString(), ncRead))
                 {
-                    return File.Exists(filePath);
+                    return System.IO.File.Exists(filePath);
                 }
             }
             catch (Exception e)
@@ -155,7 +155,6 @@ namespace BuzNetSec.Networking.Secury.IO
                 Console.WriteLine(e.Message);
                 return false;
             }
-        }//End method SecuryFileExists
-
-    }//End class NetSecuryFile
+        }
+    }
 }

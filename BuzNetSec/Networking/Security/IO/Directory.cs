@@ -5,7 +5,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 
-namespace BuzNetSec.Networking.Secury.IO
+namespace BuzNetSec.Networking.Security.IO
 {
     /// <summary>
     /// This class provide of secury methods to work with
@@ -14,7 +14,7 @@ namespace BuzNetSec.Networking.Secury.IO
     /// <remarks>
     /// Ange Buzany.
     /// </remarks>
-    public static class NetSecuryDirectory
+    public static class Directory
     {
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static bool SecuryDirectoryExists(string directoryPath, NetworkCredential ncRead)
+        public static bool Exist(string directoryPath, NetworkCredential ncRead)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace BuzNetSec.Networking.Secury.IO
 
                 using (new NetSecUseConnection(diDirectorySrc.Root.FullName, ncRead))
                 {
-                    return Directory.Exists(directoryPath);
+                    return System.IO.Directory.Exists(directoryPath);
                 }
             }
             catch (Exception)
@@ -58,7 +58,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static void SecuryDirectoryCreate(string directoryPath, NetworkCredential ncRead)
+        public static void Create(string directoryPath, NetworkCredential ncRead)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace BuzNetSec.Networking.Secury.IO
 
                 using (new NetSecUseConnection(diDirectroyPath.Root.FullName, ncRead))
                 {
-                    Directory.CreateDirectory(directoryPath);
+                    System.IO.Directory.CreateDirectory(directoryPath);
                 }
             }
             catch (Exception e)
@@ -87,7 +87,7 @@ namespace BuzNetSec.Networking.Secury.IO
         /// <returns>
         /// The method returns an integer.
         /// </returns>
-        public static void SecuryDirectoryDelete(string directoryPath, NetworkCredential ncRead)
+        public static void Delete(string directoryPath, NetworkCredential ncRead)
         {
             try
             {
@@ -95,14 +95,13 @@ namespace BuzNetSec.Networking.Secury.IO
 
                 using (new NetSecUseConnection(diDirectroyPath.Root.FullName, ncRead))
                 {
-                    Directory.Delete(directoryPath);
+                    System.IO.Directory.Delete(directoryPath);
                 }
             }
             catch (Exception e)
             {
                 throw e;
             }
-        }//End method SecuryDirectoryDelete
-
-    }//End class NetSecuryDirectory
+        }
+    }
 }

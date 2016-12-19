@@ -2,15 +2,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using System.Configuration;
-using BuzNetSec.Networking.Secury.IO;
+using BuzNetSec.Networking.Security.IO;
 
-namespace BuzNetSecUnitTest
+namespace BuzNetSecUnitTest.Networking.Security.IO
 {
     [TestClass]
-    public class NetScuryDirectoryTest
+    class FileTest
     {
-        private string _directorySourcePath = string.Empty;
-        private string _directoryDestinationPath = string.Empty;
+        private string _fileSourcePath = string.Empty;
+        private string _fileDestinationPath = string.Empty;
 
         private NetworkCredential _sourceNC = null;
         private NetworkCredential _destinationNC = null;
@@ -18,8 +18,8 @@ namespace BuzNetSecUnitTest
         [TestInitialize()]
         public void Initialize()
         {
-            _directorySourcePath = ConfigurationManager.AppSettings["SourceDirectory"];
-            _directoryDestinationPath = ConfigurationManager.AppSettings["DestinationDirectory"];
+            _fileSourcePath = ConfigurationManager.AppSettings["SourceFile"];
+            _fileDestinationPath = ConfigurationManager.AppSettings["DestinationFile"];
 
             // Create network credentials for server authentication
             _sourceNC = new NetworkCredential();
@@ -36,19 +36,19 @@ namespace BuzNetSecUnitTest
         [TestCleanup()]
         public void Cleanup()
         {
-            // Delete directory if it was created by the test
-            if (NetSecuryDirectory.SecuryDirectoryExists(_directoryDestinationPath, _sourceNC))
+            // Delete file if it was created by the test
+            if (File.Exist(_fileDestinationPath, _destinationNC))
             {
-                NetSecuryDirectory.SecuryDirectoryDelete(_directoryDestinationPath, _sourceNC);
+                File.Delete(_fileSourcePath, _destinationNC);
             }
         }
 
         [TestMethod]
-        public void SecuryDirectoryExistTest()
+        public void FileExistTest()
         {
             try
             {
-                bool result = NetSecuryDirectory.SecuryDirectoryExists(_directoryDestinationPath, _sourceNC);
+                bool result = File.Exist(_fileDestinationPath, _destinationNC);
 
                 Assert.AreEqual(true, result);
             }
@@ -59,13 +59,15 @@ namespace BuzNetSecUnitTest
         }
 
         [TestMethod]
-        public void SecuryDirectoryCreateTest()
+        public void FileCopyTest()
         {
             try
             {
-                NetSecuryDirectory.SecuryDirectoryCreate(_directoryDestinationPath, _sourceNC);
+                File.Copy(_fileSourcePath, _fileSourcePath, _sourceNC, _destinationNC);
 
-                bool result = NetSecuryDirectory.SecuryDirectoryExists(_directoryDestinationPath, _sourceNC);
+                bool result = File.Exist(_fileDestinationPath, _destinationNC);
+
+                Assert.AreEqual(true, result);
             }
             catch (Exception e)
             {
@@ -74,13 +76,13 @@ namespace BuzNetSecUnitTest
         }
 
         [TestMethod]
-        public void SecuryDirectoryDeleteTest()
+        public void FileDeleteTest()
         {
             try
             {
-                NetSecuryDirectory.SecuryDirectoryDelete(_directoryDestinationPath, _sourceNC);
+                File.Delete(_fileDestinationPath, _destinationNC);
 
-                bool result = NetSecuryDirectory.SecuryDirectoryExists(_directoryDestinationPath, _sourceNC);
+                bool result = File.Exist(_fileDestinationPath, _destinationNC);
 
                 Assert.AreEqual(false, result);
             }

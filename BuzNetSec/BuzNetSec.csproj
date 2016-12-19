@@ -40,11 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
-    <Compile Include="Networking\Secury\NetSecAddConnection.cs" />
-    <Compile Include="Networking\Secury\IO\NetSecuryDirectory.cs" />
-    <Compile Include="Networking\Secury\IO\NetSecuryFile.cs" />
-    <Compile Include="Networking\Secury\NetSecUseConnection.cs" />
+    <Compile Include="Networking\Security\NetSecAddConnection.cs" />
+    <Compile Include="Networking\Security\IO\Directory.cs" />
+    <Compile Include="Networking\Security\IO\File.cs" />
+    <Compile Include="Networking\Security\NetSecUseConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

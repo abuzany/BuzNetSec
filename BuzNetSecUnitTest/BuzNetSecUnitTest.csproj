@@ -51,7 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="NetScuryDirectoryTest.cs" />
+    <Compile Include="Networking\Security\IO\DirectoryTest.cs" />
+    <Compile Include="Networking\Security\IO\FileTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
